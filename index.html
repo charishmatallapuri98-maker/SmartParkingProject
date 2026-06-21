@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 font-sans flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col justify-between shadow-xl z-10">
+        <div>
+            <div class="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950">
+                <div class="flex items-center gap-2 font-bold text-white tracking-wide">
+                    <i data-lucide="shield-check" class="text-indigo-400 w-6 h-6"></i>
+                    <span>Admin Portal</span>
+                </div>
+            </div>
+
+            <div class="p-4 border-b border-slate-800 bg-slate-900/50 flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold shadow-inner">
+                    A
+                </div>
+                <div>
+                    <h4 class="text-sm font-medium text-white leading-tight">Super Admin</h4>
+                    <span class="text-xs text-emerald-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                        Logged In
+                    </span>
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-1">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 mb-2">Main Menu</p>
+                
+                <a href="#" class="nav-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="dashboard">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>Dashboard Overview</span>
+                </a>
+                
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="users">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    <span>Manage Users</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="homeowners">
+                    <i data-lucide="home" class="w-4 h-4"></i>
+                    <span>Approve Homeowners</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="parking">
+                    <i data-lucide="square-parking" class="w-4 h-4"></i>
+                    <span>Manage Parking Spaces</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="map">
+                    <i data-lucide="map" class="w-4 h-4"></i>
+                    <span>View Google Map</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="reservations">
+                    <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                    <span>View Reservations</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="payments">
+                    <i data-lucide="credit-card" class="w-4 h-4"></i>
+                    <span>Manage Payments</span>
+                </a>
+
+                <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="reports">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                    <span>Reports</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="p-4 border-t border-slate-800 bg-slate-950/40 space-y-1">
+            <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white" data-target="settings">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-rose-400 hover:bg-rose-500/10 hover:text-rose-300">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0">
+        
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm shrink-0">
+            <div class="flex items-center gap-4">
+                <h1 id="page-title" class="text-xl font-semibold text-gray-800">Dashboard Overview</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 relative">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-indigo-600 rounded-full"></span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div id="content-pane" class="bg-white border border-gray-200 rounded-xl p-6 min-h-[400px] shadow-xs flex flex-col items-center justify-center text-center text-gray-500">
+                <div class="p-4 bg-indigo-50 text-indigo-600 rounded-full mb-4">
+                    <i data-lucide="rocket" class="w-10 h-10"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-800 mb-1">Welcome to the Dashboard</h3>
+                <p class="text-sm max-w-sm text-gray-400">Select a feature category from the left navigation tree module to display content windows here.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide SVG Icons
+        lucide.createIcons();
+
+        // Object containing page data to mimic routing
+        const pageContent = {
+            dashboard: { title: "Dashboard Overview", text: "Summary metrics, system status graphs, and quick access statistics live here." },
+            users: { title: "Manage Users", text: "Search accounts, edit access control listings, ban protocols, or invite new administrative entities." },
+            homeowners: { title: "Approve Homeowners", text: "Pending registry approvals. Verify deed documents and property ownership files." },
+            parking: { title: "Manage Parking Spaces", text: "Assign allocations, monitor occupancy tracking systems, or edit zone regulations." },
+            map: { title: "View Google Map", text: "Geospatial telemetry dashboard displaying dynamic real-time parking spot mappings." },
+            reservations: { title: "View Reservations", text: "Timeline logs and processing queues for all incoming and historical slot reservations." },
+            payments: { title: "Manage Payments", text: "Financial invoicing data ledger, escrow clearing processes, and transactional audit trails." },
+            reports: { title: "Reports & Analytics", text: "Export system processing metrics, user retention logs, and revenue generation analytics graphs." },
+            settings: { title: "System Settings", text: "Configure global system limits, adjust email notifications API keys, and update profile security keys." }
+        };
+
+        // Navigation state machine logic
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageTitleElement = document.getElementById('page-title');
+        const contentPaneElement = document.getElementById('content-pane');
+
+        // Style presets for state changes
+        const activeClasses = ['bg-indigo-600', 'text-white', 'hover:bg-indigo-600'];
+        const inactiveClasses = ['text-slate-300', 'hover:bg-slate-800', 'hover:text-white'];
+
+        function setInitialActiveState() {
+            navLinks.forEach(link => {
+                if(link.classList.contains('active')) {
+                    link.classList.add(...activeClasses);
+                } else {
+                    link.classList.add(...inactiveClasses);
+                }
+            });
+        }
+        setInitialActiveState();
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Clear active states
+                navLinks.forEach(l => {
+                    l.classList.remove(...activeClasses);
+                    l.classList.add(...inactiveClasses);
+                });
+
+                // Set new target active states
+                link.classList.remove(...inactiveClasses);
+                link.classList.add(...activeClasses);
+
+                // Fetch dynamic structural template content
+                const targetKey = link.getAttribute('data-target');
+                const data = pageContent[targetKey];
+
+                if (data) {
+                    pageTitleElement.innerText = data.title;
+                    contentPaneElement.innerHTML = `
+                        <div class="text-left w-full max-w-2xl mx-auto">
+                            <span class="text-xs font-semibold text-indigo-600 tracking-wider uppercase bg-indigo-50 px-2.5 py-1 rounded-md">Feature Workspace</span>
+                            <h2 class="text-2xl font-bold text-gray-800 mt-2 mb-4">${data.title}</h2>
+                            <p class="text-gray-600 border-l-4 border-indigo-500 pl-4 py-2 italic bg-gray-50 rounded-r-lg">${data.text}</p>
+                            
+                            <div class="mt-8 border border-dashed border-gray-200 rounded-lg h-48 flex items-center justify-center text-xs text-gray-400">
+                                [ Mock Component Viewport for data tables / UI controls ]
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
