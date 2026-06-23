@@ -1,36 +1,65 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
-
-const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-
-// MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((err) => {
-    console.log("Database connection error:", err);
-  });
+  .connect("mongodb://127.0.0.1:27017/parkingDB")
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
-// Test Route
-app.get("/", (req, res) => {
-  res.send("Smart Parking Authentication API Running");
+const bookingSchema = new mongoose.Schema({
+  slotNumber: String,
+  vehicleNumber: String,
+  entryTime: String,
+  exitTime: String,
+  fee: Number,
 });
 
-// Server
-const PORT = process.env.PORT || 5000;
+const Booking = mongoose.model("Booking", bookingSchema);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const slots = [
+  { id: 1, slotNumber: "A1", status: "Available" },
+  { id: 2, slotNumber: "A2", status: "Occupied" },
+  { id: 3, slotNumber: "A3", status: "Available" },
+  { id: 4, slotNumber: "A4", status: "Available" },
+  { id: 5, slotNumber: "A5", status: "Occupied" },
+  { id: 6, slotNumber: "A6", status: "Available" },
+];
+
+app.get("/", (req, res) => {
+  res.send("Parking API Running");
+});
+
+app.get("/api/slots", (req, res) => {
+  res.json(slots);
+});
+
+app.post("/api/book", async (req, res) => {
+  try {
+    const booking = new Booking(req.body);
+
+    await booking.save();
+
+    res.json({
+      success: true,
+      message: "Booking Saved to MongoDB",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
+app.get("/api/bookings", async (req, res) => {
+  const bookings = await Booking.find();
+  res.json(bookings);
+});
+
+app.listen(5000, () => {
+  console.log("Server Running on Port 5000");
 });
